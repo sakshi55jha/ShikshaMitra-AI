@@ -3,15 +3,17 @@ import ReactMarkdown from "react-markdown";
 
 export default function VisualAid() {
   const [prompt, setPrompt] = useState("");
-  const [result, setResult] = useState("");
+  const [textResult, setTextResult] = useState("");
+  const [imageResult, setImageResult] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const generate = async () => {
+  const generateVisual = async () => {
     setLoading(true);
-    setResult("");
+    setTextResult("");
+    setImageResult("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/generate", {
+      const res = await fetch("http://localhost:5000/api/generate-visual", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
@@ -19,41 +21,52 @@ export default function VisualAid() {
 
       const data = await res.json();
 
-      if (data.text) {
-        setResult(data.text.trim()); // keep Markdown as is
-      } else {
-        setResult("⚠️ No response from server");
-      }
+      if (data.text) setTextResult(data.text);
+      if (data.imageUrl) setImageResult(data.imageUrl);
+      if (!data.text && !data.imageUrl) setTextResult("⚠️ No visual explanation generated.");
     } catch (err) {
       console.error(err);
-      setResult("❌ Error connecting to backend");
+      setTextResult("❌ Error connecting to backend");
     }
 
     setLoading(false);
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold">AI Visual Aid (Gemini)</h2>
+    <div className="p-4 max-w-3xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4">AI Visual Aid (Gemini)</h2>
 
       <textarea
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
-        placeholder="Enter your question or topic..."
-        className="border p-2 w-full my-2"
+        placeholder="Enter a topic to generate diagrams/charts..."
+        className="w-full border p-2 mb-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        rows={3}
       />
 
       <button
-        onClick={generate}
+        onClick={generateVisual}
         disabled={loading || !prompt.trim()}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
       >
         {loading ? "Generating..." : "Generate"}
       </button>
 
-      {result && (
-        <div className="mt-4 p-2 border rounded bg-gray-100">
-          <ReactMarkdown>{result}</ReactMarkdown>
+      {/* Display Textual Visual Explanation */}
+      {textResult && (
+        <div className="mt-4 p-4 border rounded bg-gray-100">
+          <ReactMarkdown>{textResult}</ReactMarkdown>
+        </div>
+      )}
+
+      {/* Display Image if available */}
+      {imageResult && (
+        <div className="mt-4">
+          <img
+            src={imageResult}
+            alt="Generated Visual"
+            className="border rounded shadow-md max-w-full"
+          />
         </div>
       )}
     </div>
