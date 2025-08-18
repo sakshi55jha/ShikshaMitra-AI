@@ -1,15 +1,12 @@
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
 
 export default function VisualAid() {
   const [prompt, setPrompt] = useState("");
-  const [textResult, setTextResult] = useState("");
   const [imageResult, setImageResult] = useState("");
   const [loading, setLoading] = useState(false);
 
   const generateVisual = async () => {
     setLoading(true);
-    setTextResult("");
     setImageResult("");
 
     try {
@@ -20,13 +17,11 @@ export default function VisualAid() {
       });
 
       const data = await res.json();
-
-      if (data.text) setTextResult(data.text);
       if (data.imageUrl) setImageResult(data.imageUrl);
-      if (!data.text && !data.imageUrl) setTextResult("⚠️ No visual explanation generated.");
+      else setImageResult("⚠️ No visual generated.");
     } catch (err) {
       console.error(err);
-      setTextResult("❌ Error connecting to backend");
+      setImageResult("❌ Error connecting to backend");
     }
 
     setLoading(false);
@@ -34,7 +29,7 @@ export default function VisualAid() {
 
   return (
     <div className="p-4 max-w-3xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">AI Visual Aid (Gemini)</h2>
+      <h2 className="text-2xl font-bold mb-4">AI Visual Aid</h2>
 
       <textarea
         value={prompt}
@@ -52,21 +47,17 @@ export default function VisualAid() {
         {loading ? "Generating..." : "Generate"}
       </button>
 
-      {/* Display Textual Visual Explanation */}
-      {textResult && (
-        <div className="mt-4 p-4 border rounded bg-gray-100">
-          <ReactMarkdown>{textResult}</ReactMarkdown>
-        </div>
-      )}
-
-      {/* Display Image if available */}
       {imageResult && (
         <div className="mt-4">
-          <img
-            src={imageResult}
-            alt="Generated Visual"
-            className="border rounded shadow-md max-w-full"
-          />
+          {imageResult.startsWith("data:image") ? (
+            <img
+              src={imageResult}
+              alt="Generated Visual"
+              className="border rounded shadow-md max-w-full"
+            />
+          ) : (
+            <p>{imageResult}</p>
+          )}
         </div>
       )}
     </div>
