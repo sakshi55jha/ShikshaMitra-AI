@@ -17,7 +17,7 @@ export default function VisualAid() {
       });
 
       const data = await res.json();
-      if (data.imageUrl) setImageResult(data.imageUrl);
+      if (data.image) setImageResult(data.image);
       else setImageResult("⚠️ No visual generated.");
     } catch (err) {
       console.error(err);
@@ -34,30 +34,22 @@ export default function VisualAid() {
       <textarea
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
-        placeholder="Enter a topic to generate diagrams/charts..."
-        className="w-full border p-2 mb-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter a topic to generate a visual..."
+        className="w-full border p-2 mb-4 rounded"
         rows={3}
       />
 
       <button
         onClick={generateVisual}
         disabled={loading || !prompt.trim()}
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        className="bg-blue-500 text-white px-4 py-2 rounded"
       >
         {loading ? "Generating..." : "Generate"}
       </button>
 
       {imageResult && (
         <div className="mt-4">
-          {imageResult.startsWith("data:image") ? (
-            <img
-              src={imageResult}
-              alt="Generated Visual"
-              className="border rounded shadow-md max-w-full"
-            />
-          ) : (
-            <p>{imageResult}</p>
-          )}
+          <img src={imageResult} alt="Generated Visual" className="border rounded shadow-md max-w-full" />
         </div>
       )}
     </div>
