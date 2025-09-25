@@ -1,33 +1,28 @@
+import { Menu } from "lucide-react";
+
 export default function Navbar({ toggleSidebar }) {
   return (
-    <nav 
-      className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white flex justify-between items-center shadow-md"
-      role="navigation" // ⭐ Accessibility
-      aria-label="Main Navigation"
-    >
-      {/* Logo + Hamburger */}
+    <nav className="fixed top-0 left-0 w-full bg-white shadow-sm z-20 p-4 md:hidden">
       <div className="flex items-center gap-4">
-        {/* Hamburger for small screens */}
+        {/* Hamburger Menu Button */}
         <button
-          className="md:hidden text-2xl focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" // ⭐ Focus ring for accessibility
           onClick={toggleSidebar}
-          aria-label="Open Sidebar" // ⭐ Screen readers
+          className="p-2 rounded-full text-gray-600 hover:bg-gray-100 transition-colors duration-200"
+          aria-label="Open sidebar menu"
         >
-          ☰
+          <Menu size={24} />
         </button>
-        <h1 className="text-2xl font-extrabold tracking-wide flex items-center gap-2">
-          📘 ShikshaMitra
-        </h1>
-      </div>
 
-      {/* Logout */}
-      <div>
-        <button 
-          className="bg-white text-blue-600 px-4 py-2 rounded-full font-semibold shadow hover:scale-105 transition duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
-          aria-label="Logout" // ⭐ Accessibility
-        >
-          Logout
-        </button>
+        {/* Brand logo and name */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-green-200 flex items-center justify-center">
+            <span className="text-sm">🎓</span>
+          </div>
+          <div>
+            <h2 className="text-lg font-bold">शि‍क्षा मि‍त्रा</h2>
+            <p className="text-xs text-gray-500">AI Teaching Assistant</p>
+          </div>
+        </div>
       </div>
     </nav>
   );
