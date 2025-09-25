@@ -2,10 +2,11 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { MessageCircle, Book, Send, Tag, FlaskConical } from "lucide-react";
 
-const API_BASE_URL = process.env.VITE_API_BASE_URL;
 
 
 export default function AskQuestion() {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const [prompt, setPrompt] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);

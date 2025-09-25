@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { FileText, Edit, Send } from "lucide-react";
 
-const API_BASE_URL = process.env.VITE_API_BASE_URL;
 
 const AssessmentPage = () => {
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const [prompt, setPrompt] = useState("");
   const [assessment, setAssessment] = useState("");
   const [loading, setLoading] = useState(false);

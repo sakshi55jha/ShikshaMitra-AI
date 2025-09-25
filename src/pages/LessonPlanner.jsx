@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
-const API_BASE_URL = process.env.VITE_API_BASE_URL;
 
 
 export default function LessonPlanner() {
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   // ... (all your existing state variables and functions)
   const [subject, setSubject] = useState("");
   const [grade, setGrade] = useState("");
