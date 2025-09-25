@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 
 
 export default function LessonPlanner() {
-        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   // ... (all your existing state variables and functions)
   const [subject, setSubject] = useState("");

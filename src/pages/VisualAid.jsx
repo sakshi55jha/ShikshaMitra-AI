@@ -3,7 +3,7 @@ import { PenTool, Brain, Image as ImageIcon, Download } from "lucide-react";
 
 
 const VisualAid = () => {
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [topic, setTopic] = useState("");
   const [diagram, setDiagram] = useState("");

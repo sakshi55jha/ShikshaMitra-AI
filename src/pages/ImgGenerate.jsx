@@ -4,7 +4,7 @@ import { PenTool, Brain, ImageIcon as ImageIconLucide, Download } from "lucide-r
 
 
 export default function ImgGenerate() {
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [prompt, setPrompt] = useState("");
   const [image, setImage] = useState(null);
