@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PenTool, Brain, Image as ImageIcon, Download } from "lucide-react";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = process.env.VITE_API_BASE_URL;
 
 const VisualAid = () => {
   const [topic, setTopic] = useState("");
