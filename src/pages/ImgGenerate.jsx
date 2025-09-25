@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { PenTool, Brain, ImageIcon as ImageIconLucide, Download } from "lucide-react";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 export default function ImgGenerate() {
   const [prompt, setPrompt] = useState("");
@@ -16,7 +18,7 @@ export default function ImgGenerate() {
 
     try {
       // Step 1: Request image generation
-      const startRes = await fetch("http://localhost:5000/api/ai-img", {
+      const startRes = await fetch(`${API_BASE_URL}/api/ai-img`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
@@ -33,7 +35,7 @@ export default function ImgGenerate() {
         await new Promise((r) => setTimeout(r, 5000)); // wait 5 sec
 
         const checkRes = await fetch(
-          `http://localhost:5000/api/check-status/${taskId}`
+          `${API_BASE_URL}/api/check-status/${taskId}`
         );
         const checkData = await checkRes.json();
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { FileText, Edit, Send } from "lucide-react";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const AssessmentPage = () => {
   const [prompt, setPrompt] = useState("");
@@ -18,7 +19,7 @@ const AssessmentPage = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/generate-text", {
+      const res = await fetch(`${API_BASE_URL}/api/generate-text`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

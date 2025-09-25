@@ -2,6 +2,8 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { MessageCircle, Book, Send, Tag, FlaskConical } from "lucide-react";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 export default function AskQuestion() {
   const [prompt, setPrompt] = useState("");
@@ -29,7 +31,7 @@ export default function AskQuestion() {
     setAnswer("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/generate-text", {
+      const res = await fetch(`${API_BASE_URL}/api/generate-text`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),

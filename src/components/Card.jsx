@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+
 export default function Card({ title, description, path, color   }) {
   return (
     <div 

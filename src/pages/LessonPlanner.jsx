@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 export default function LessonPlanner() {
   // ... (all your existing state variables and functions)
@@ -17,7 +19,7 @@ export default function LessonPlanner() {
     setLessonPlan(null);
 
     try {
-      const res = await fetch("http://localhost:5000/api/generate-lesson", {
+      const res = await fetch(`${API_BASE_URL}/api/generate-lesson`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ subject, grade, topic, planType, classroomType }),
