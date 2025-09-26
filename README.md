@@ -88,4 +88,4 @@ ShikshaMitra combines AI content generation, multimodal visual outputs, and real
 - cursor/ lovable
 ---
 
-- Deploy link(only frontend got deployed): https://project-0-xzzs.vercel.app/
+- Deploy link: https://shiksha-mitra-ai.vercel.app/
