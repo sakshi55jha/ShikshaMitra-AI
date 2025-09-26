@@ -10,7 +10,30 @@ import axios from "axios";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+const allowedOrigins = [
+  'https://shiksha-mitra-ai.vercel.app',
+  'http://localhost:3000' // Keep this for local development testing
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true); 
+    
+    // Check if the requesting origin is in the allowed list
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'), false);
+    }
+  },
+  methods: 'GET,POST', // Specify the allowed methods
+  credentials: true,
+};
+
+// ➡️ Apply the specific CORS configuration
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
 
