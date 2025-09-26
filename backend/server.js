@@ -27,7 +27,7 @@ app.post("/api/generate-assessment", async (req, res) => {
     const { prompt } = req.body;
     if (!prompt) return res.status(400).json({ error: "Prompt is required" });
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
     const result = await model.generateContent(prompt);
     const text = result.response.text();
     const finalText = text ? text.trim() : "⚠️ No response from Gemini";
@@ -45,7 +45,7 @@ app.post("/api/generate-text", async (req, res) => {
     const { prompt } = req.body;
     if (!prompt) return res.status(400).json({ error: "Prompt is required" });
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
     const result = await model.generateContent(prompt);
     const text = result.response.text();
     const finalText = text ? text.trim() : "⚠️ No response from Gemini";
@@ -132,7 +132,7 @@ app.post("/api/visual-aid", async (req, res) => {
     }
 
     // Pick model here
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const prompt = `
       Create a simple, clear ASCII diagram or flowchart to explain: ${topic}.
@@ -154,7 +154,7 @@ app.post("/api/generate-lesson", async (req, res) => {
   try {
     const { subject, grade, topic } = req.body;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const prompt = `
       Create a detailed lesson plan for:
