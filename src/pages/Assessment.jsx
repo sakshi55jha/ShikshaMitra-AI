@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { FileText, Edit, Send } from "lucide-react";
+import { API_BASE_URL } from "../config";
 
 
 const AssessmentPage = () => {
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+      // const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [prompt, setPrompt] = useState("");
   const [assessment, setAssessment] = useState("");

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { PenTool, Brain, ImageIcon as ImageIconLucide, Download } from "lucide-react";
+import { API_BASE_URL } from "../config";
 
 
 
 export default function ImgGenerate() {
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+      // const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [prompt, setPrompt] = useState("");
   const [image, setImage] = useState(null);

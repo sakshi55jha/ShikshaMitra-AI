@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import { API_BASE_URL } from "../config";
 
 
 
 export default function LessonPlanner() {
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   // ... (all your existing state variables and functions)
   const [subject, setSubject] = useState("");

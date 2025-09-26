@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { MessageCircle, Book, Send, Tag, FlaskConical } from "lucide-react";
-
+import { API_BASE_URL } from "../config";
 
 
 export default function AskQuestion() {
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+    //   const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const [prompt, setPrompt] = useState("");
   const [answer, setAnswer] = useState("");
